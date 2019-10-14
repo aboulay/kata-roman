@@ -2,6 +2,8 @@
 
 > Notice that the main goal of this project is not to finish the kata but having a base to test github-action and github-registry.
 
+![](https://github.com/aboulay/kata-roman/workflows/py-pipeline/badge.svg)
+
 TODO
 
 ## Requirements
