@@ -33,25 +33,19 @@ jobs:
   build:
     needs: [tests]
     runs-on: ubuntu-latest
+    env:
+        REGISTRY: docker.pkg.github.com
+        IMAGE_PATH: aboulay/kata-roman
+        IMAGE_NAME: kata-roman
+        USERNAME: aboulay
     steps:
     - uses: actions/checkout@master
     - name: login in Registry
       run: |
         docker login $REGISTRY --username $USERNAME --password ${{ secrets.DOCKER_PASSWORD }}
-      env:
-        REGISTRY: docker.pkg.github.com
-        USERNAME: aboulay
     - name: build Dockerfile
       run: |
         docker build . -t $REGISTRY/$IMAGE_PATH/$IMAGE_NAME
-      env:
-        REGISTRY: docker.pkg.github.com
-        IMAGE_PATH: aboulay/kata-roman
-        IMAGE_NAME: kata-roman
     - name: push in registry
       run : |
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
-      env:
-        REGISTRY: docker.pkg.github.com
-        IMAGE_PATH: aboulay/kata-roman
-        IMAGE_NAME: kata-roman
