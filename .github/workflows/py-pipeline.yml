@@ -38,7 +38,6 @@ jobs:
         IMAGE_PATH: aboulay/kata-roman
         IMAGE_NAME: kata-roman
         USERNAME: aboulay
-        SHORTSHA: $(echo $GITHUB_SHA | cut -c 1-8)
     steps:
     - uses: actions/checkout@master
     - name: login in Registry
@@ -46,6 +45,7 @@ jobs:
         docker login $REGISTRY --username $USERNAME --password ${{ secrets.DOCKER_PASSWORD }}
     - name: build Dockerfile
       run: |
+        export SHORTSHA=$(echo $GITHUB_SHA | cut -c 1-8)
         echo $SHORTSHA
         docker build . -t $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$SHORTSHA
         docker tag $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$SHORTSHA $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
