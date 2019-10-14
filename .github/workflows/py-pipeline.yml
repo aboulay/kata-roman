@@ -37,8 +37,12 @@ jobs:
       REGISTRY: docker.pkg.github.com
       IMAGE_PATH: aboulay/kata-roman
       IMAGE_NAME: ubuntu
+      USERNAME: aboulay
     steps:
     - uses: actions/checkout@master
+    - name: login in Registry
+      run: docker login --username $USERNAME --password ${{ secrets.DOCKER_PASSWORD }}
     - name: build Dockerfile
-      run: |
-        docker build . -t $REGISTRY/$IMAGE_PATH/$IMAGE_NAME
+      run: docker build . -t $REGISTRY/$IMAGE_PATH/$IMAGE_NAME
+    - name: push in registry
+      run : docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
