@@ -51,5 +51,7 @@ jobs:
         docker tag $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$SHORTSHA $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
     - name: push in registry
       run : |
+        export SHORTSHA=$(echo $GITHUB_SHA | cut -c 1-8)
+        echo $SHORTSHA
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$SHORTSHA
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
