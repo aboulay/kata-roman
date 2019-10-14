@@ -45,7 +45,9 @@ jobs:
         docker login $REGISTRY --username $USERNAME --password ${{ secrets.DOCKER_PASSWORD }}
     - name: build Dockerfile
       run: |
-        docker build . -t $REGISTRY/$IMAGE_PATH/$IMAGE_NAME
+        export GITHUB_SHORTSHA=$(echo $GITHUB_SHA | cut -c 1-8)
+        echo $GITHUB_SHORTSHA
+        docker build . -t $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$GITHUB_SHORTSHA
     - name: push in registry
       run : |
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
