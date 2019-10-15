@@ -11,4 +11,4 @@ inputs:
     default: 'latest'
 runs:
   using: 'docker'
-  image: ${{ inputs.image-name }}:${{ inputs.commit-short-sha }}
+  image: 'docker.pkg.github.com/aboulay/kata-roman/kata-roman'
