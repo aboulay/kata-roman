@@ -49,14 +49,14 @@ jobs:
         echo $SHORTSHA
         docker build . -t $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$SHORTSHA
         docker tag $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$SHORTSHA $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
+    - name: test the builded image
+      uses: ./.github/actions/run-container
+      id: run-container
+      with:
+        number: 17
     - name: push in registry
       run : |
         export SHORTSHA=$(echo $GITHUB_SHA | cut -c 1-8)
         echo "pushing on $SHORTSHA"
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$SHORTSHA
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
-    - name: run custom action
-      uses: ./.github/actions/run-container
-      id: run-container
-      with:
-        number: 17
