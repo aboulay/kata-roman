@@ -11,6 +11,4 @@ inputs:
     default: 'latest'
 runs:
   using: 'docker'
-  image: '${{ inputs.image-name }}:${{ inputs.commit-short-sha }}'
-  args:
-    - ${{ inputs.who-to-greet }}
+  image: ${{ inputs.image-name }}:${{ inputs.commit-short-sha }}
