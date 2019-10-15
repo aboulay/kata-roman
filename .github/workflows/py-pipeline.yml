@@ -55,3 +55,9 @@ jobs:
         echo "pushing on $SHORTSHA"
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$SHORTSHA
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
+    - name: run custom action
+      uses: .github/actions/run-container.yml
+      id: run-container
+      with:
+        image-name: $REGISTRY/$IMAGE_PATH/$IMAGE_NAME
+        commit-short-sha: latest
