@@ -4,7 +4,8 @@ from translator.roman import RomanTranslator
 
 def main():
     roman_translator = RomanTranslator()
-    roman_translator.translate(sys.argv[1])
+    result = roman_translator.translate(sys.argv[1])
+    print(result)
 
 if __name__ == "__main__":
     main()
