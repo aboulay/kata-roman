@@ -56,7 +56,7 @@ jobs:
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:$SHORTSHA
         docker push $REGISTRY/$IMAGE_PATH/$IMAGE_NAME:latest
     - name: run custom action
-      uses: ./.github/actions/run-container.yml
+      uses: ./.github/actions/run-container
       id: run-container
       with:
         image-name: $REGISTRY/$IMAGE_PATH/$IMAGE_NAME
