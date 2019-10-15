@@ -1,14 +1,12 @@
 name: 'Run container'
 description: 'Run the wanted container'
 inputs:
-  image-name:
-    description: 'The description of the image'
+  number:
+    description: 'The number to check'
     required: true
-    default: 'docker.pkg.github.com/aboulay/kata-roman/kata-roman'
-  commit-short-sha:  # id of input
-    description: 'The sha of the commit'
-    required: true
-    default: 'latest'
+    default: '1'
 runs:
   using: 'docker'
   image: 'docker.pkg.github.com/aboulay/kata-roman/kata-roman'
+  args:
+    - ${{ inputs.number }}

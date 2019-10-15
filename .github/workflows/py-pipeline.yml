@@ -59,5 +59,4 @@ jobs:
       uses: ./.github/actions/run-container
       id: run-container
       with:
-        image-name: $REGISTRY/$IMAGE_PATH/$IMAGE_NAME
-        commit-short-sha: latest
+        number: 17
