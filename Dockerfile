@@ -10,4 +10,4 @@ COPY ./main.py /app/main.py
 
 WORKDIR /app
 
-ENTRYPOINT [ "./main.py" ]
+ENTRYPOINT [ "/app/main.py" ]
